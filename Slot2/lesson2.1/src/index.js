@@ -3,13 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import PeopleList from "./PeopleList";
+import Ex10 from "./Ex10";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
-    <PeopleList />
+    <Ex10 />
   </React.StrictMode>
 );
 
