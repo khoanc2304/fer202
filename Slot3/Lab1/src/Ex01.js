@@ -1,12 +1,15 @@
+
 function EmployeeDetails() {
   const employee = { name: "John Doe", age: 30, department: "IT" };
 
+  const { name, age, department } = employee;
+
   return (
-    <div>
-      <h1>{employee.name}</h1>
-      <p>Age: {employee.age}</p>
-      <p>Department: {employee.department}</p>
-    </div>
+    <>
+      <p>Name: {name}</p>
+      <p>Age: {age}</p>
+      <p>Department: {department}</p>
+    </>
   );
 }
 
