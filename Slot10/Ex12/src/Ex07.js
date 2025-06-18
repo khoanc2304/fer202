@@ -32,7 +32,7 @@ function DragAndDropList() {
         padding: 0, 
         width: '300px',
         margin: '0 auto',
-        border: '1px solid #ccc', // Optional: to make the list box more visible
+        border: '1px solid #ccc', 
       }}>
         {items.map((item, index) => (
           <li
