@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function ValidatedLoginForm() {
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
