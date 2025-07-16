@@ -54,17 +54,12 @@ const CreatePost = () => {
             onChange={(e) => setContent(e.target.value)}
           />
         </Form.Group>
-        <Button type="submit" variant="primary">
-          Tạo bài viết
-        </Button>
+        <Button type="submit" variant="primary">  Tạo bài viết  </Button>
       </Form>
     </Container>
   );
 };
 
-CreatePost.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
-};
+CreatePost.propTypes = { title: PropTypes.string,  content: PropTypes.string,};
 
 export default CreatePost;

@@ -41,9 +41,7 @@ const PostList = () => {
     <Container className="my-4">
       <h1>Danh sách bài viết</h1>
       <Button variant="primary" className="mb-3">
-        <Link to="/create" style={{ color: "white", textDecoration: "none" }}>
-          Tạo bài viết mới
-        </Link>
+        <Link to="/create" style={{ color: "white", textDecoration: "none" }}> Tạo bài viết mới </Link>
       </Button>
       <ListGroup>
         {data.map((post) => (
@@ -53,13 +51,9 @@ const PostList = () => {
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.content}</Card.Text>
                 <Link to={`/edit/${post.id}`}>
-                  <Button variant="warning" className="me-2">
-                    Chỉnh sửa
-                  </Button>
+                  <Button variant="warning" className="me-2">Chỉnh sửa</Button>
                 </Link>
-                <Button variant="danger" onClick={() => handleDelete(post.id)}>
-                  Xóa
-                </Button>
+                <Button variant="danger" onClick={() => handleDelete(post.id)}>Xóa </Button>
               </Card.Body>
             </Card>
           </ListGroup.Item>
@@ -71,11 +65,9 @@ const PostList = () => {
 
 PostList.propTypes = {
   data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-    })
+    PropTypes.shape({ id: PropTypes.number.isRequired,
+                      title: PropTypes.string.isRequired,
+                      content: PropTypes.string.isRequired, })
   ),
 };
 

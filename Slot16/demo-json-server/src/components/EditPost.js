@@ -35,7 +35,6 @@ const EditPost = () => {
       setStatus("Vui lòng điền đầy đủ tiêu đề và nội dung!");
       return;
     }
-
     const updatedPost = { title, content };
     try {
       await axios.put(`http://localhost:3000/posts/${id}`, updatedPost);
