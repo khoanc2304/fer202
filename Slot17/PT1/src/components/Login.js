@@ -2,30 +2,38 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal, Alert } from "react-bootstrap";
 
-function Login() {
+function Login({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [validUser, setValidUser] = useState("");
+  const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const res = await axios.get("http://localhost:3001/UserAccounts");
-    const user = res.data.find(
-      (u) => u.username === username && u.password === password
-    );
-    if (user) {
-      setValidUser(user.username);
-      setShowModal(true);
-      setTimeout(() => {
-        setShowModal(false);
-        navigate("/laptops");
-      }, 1000);
-    } else {
-      alert("Invalid username or password!");
+    try {
+      const res = await axios.get("http://localhost:3001/UserAccounts");
+      const user = res.data.find(
+        (u) => u.username === username && u.password === password
+      );
+
+      if (user) {
+        setValidUser(user.username);
+        if (setUser) setUser(user); // Call setUser only if it exists
+        setShowModal(true);
+        setLoginError(""); // Clear error on success
+        setTimeout(() => {
+          setShowModal(false);
+          navigate("/laptops");
+        }, 1000);
+      } else {
+        setLoginError("Invalid username or password!");
+      }
+    } catch (error) {
+      setLoginError("Server error. Please try again.");
     }
   };
 
@@ -42,6 +50,7 @@ function Login() {
             required
           />
         </Form.Group>
+
         <Form.Group className="mt-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -51,11 +60,20 @@ function Login() {
             required
           />
         </Form.Group>
-        <Button type="submit" className="mt-3">Login</Button>
+
+        {loginError && (
+          <Alert variant="danger" className="mt-3" style={{ backgroundColor: "#ffebee", color: "#c62828", border: "none", borderRadius: "4px" }}>
+            {loginError}
+          </Alert>
+        )}
+
+        <Button type="submit" className="mt-3" style={{ backgroundColor: "#1976d2", borderColor: "#1976d2", width: "100%" }}>
+          Login
+        </Button>
       </Form>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Body>Welcome, {validUser} login Successful!</Modal.Body>
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Body>Welcome, {validUser}! Login successful.</Modal.Body>
       </Modal>
     </div>
   );
